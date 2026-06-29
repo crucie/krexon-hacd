@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KREXON — The Loyalty Economy, Formed</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --brand: #F44D1A;
+    --white: #ffffff;
+    --black: #0a0a0a;
+    --gray: #1a1a1a;
+    --gray2: #2a2a2a;
+    --gray3: #444;
+    --muted: #888;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(244,77,26,0.15);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-logo svg { width: 32px; height: 24px; }
+
+  .nav-wordmark {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: var(--white);
+  }
+
+  .nav-wordmark span { color: var(--brand); }
+
+  .nav-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* SLIDE BASE */
+  .slide {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 80px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide-number {
+    position: absolute;
+    top: 80px;
+    right: 80px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--brand);
+    opacity: 0.5;
+  }
+
+  /* HERO SLIDE */
+  #slide-1 {
+    background: var(--black);
+    padding: 120px 80px 80px;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: var(--brand);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .hero-headline {
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 40px;
+  }
+
+  .hero-headline .accent { color: var(--brand); }
+
+  .hero-sub {
+    font-size: 20px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.6);
+    max-width: 560px;
+    line-height: 1.6;
+    margin-bottom: 56px;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+  }
+
+  .stat-block {}
+  .stat-num {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--brand);
+    letter-spacing: -0.02em;
+  }
+  .stat-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .hero-logo-bg {
+    position: absolute;
+    right: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.06;
+    width: 600px;
+    height: auto;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: var(--brand);
+    margin-bottom: 40px;
+  }
+
+  /* SLIDE TITLES */
+  .slide-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: var(--brand);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .slide-title {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    margin-bottom: 48px;
+  }
+
+  /* PROBLEM SLIDE */
+  #slide-2 { background: var(--black); }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 48px;
+  }
+
+  .problem-cell {
+    background: var(--gray);
+    padding: 32px;
+    position: relative;
+  }
+
+  .problem-cell:hover { background: var(--gray2); }
+
+  .problem-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+
+  .problem-title {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .problem-body {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6;
+  }
+
+  .problem-number {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--brand);
+    opacity: 0.4;
+  }
+
+  /* SOLUTION SLIDE */
+  #slide-3 { background: var(--gray); }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .solution-body {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.75;
+    margin-bottom: 32px;
+  }
+
+  .brand-statement {
+    border-left: 3px solid var(--brand);
+    padding-left: 24px;
+  }
+
+  .brand-statement p {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+
+  .arch-box {
+    background: var(--black);
+    border: 1px solid rgba(244,77,26,0.2);
+  }
+
+  .arch-layer {
+    padding: 28px 32px;
+    border-bottom: 1px solid var(--gray2);
+    position: relative;
+  }
+
+  .arch-layer:last-child { border-bottom: none; }
+
+  .arch-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--brand);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .arch-name {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+
+  .arch-role {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .arch-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    background: rgba(244,77,26,0.05);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--brand);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--gray2);
+  }
+
+  /* HACD SLIDE */
+  #slide-4 { background: var(--black); }
+
+  .hacd-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 8px;
+  }
+
+  .hacd-card {
+    background: var(--gray);
+    padding: 36px 28px;
+  }
+
+  .hacd-card-number {
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--brand);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .hacd-card-title {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .hacd-card-body {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.65;
+  }
+
+  /* SUPPLY SLIDE */
+  #slide-5 { background: var(--gray); }
+
+  .supply-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+  }
+
+  .supply-table th {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--brand);
+    text-align: left;
+    padding: 12px 20px;
+    background: rgba(244,77,26,0.08);
+    border-bottom: 1px solid rgba(244,77,26,0.2);
+  }
+
+  .supply-table td {
+    padding: 16px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--gray2);
+  }
+
+  .supply-table tr:last-child td { border-bottom: none; }
+
+  .supply-table td:first-child {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 500;
+    width: 40%;
+  }
+
+  .supply-table .highlight td {
+    color: var(--brand);
+    font-weight: 800;
+    background: rgba(244,77,26,0.04);
+  }
+
+  .formula-box {
+    background: var(--black);
+    border: 1px solid rgba(244,77,26,0.15);
+    padding: 24px 32px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+    font-family: 'Courier New', monospace;
+    line-height: 2;
+  }
+
+  .formula-box .f-brand { color: var(--brand); font-weight: 800; }
+
+  /* UTILITY SLIDE */
+  #slide-6 { background: var(--black); }
+
+  .utility-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-bottom: 48px;
+  }
+
+  .utility-card {
+    background: var(--gray);
+    padding: 32px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .utility-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--brand);
+  }
+
+  .utility-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .utility-title {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .utility-body {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.65;
+  }
+
+  /* PARTNER SLIDE */
+  #slide-7 { background: var(--gray); }
+
+  .partner-pitch {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .pitch-list { list-style: none; }
+
+  .pitch-list li {
+    display: flex;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--gray2);
+    align-items: flex-start;
+  }
+
+  .pitch-list li:last-child { border-bottom: none; }
+
+  .pitch-bullet {
+    width: 6px;
+    height: 6px;
+    background: var(--brand);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  .pitch-text { }
+  .pitch-text strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .pitch-text span {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+  }
+
+  .trust-block {
+    background: var(--black);
+    border: 1px solid rgba(244,77,26,0.2);
+    padding: 40px;
+  }
+
+  .trust-q {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 24px;
+    line-height: 1.4;
+  }
+
+  .trust-q em {
+    font-style: normal;
+    color: var(--brand);
+  }
+
+  .trust-answer {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.75;
+    margin-bottom: 24px;
+  }
+
+  .trust-answer strong { color: var(--white); }
+
+  /* CTA SLIDE */
+  #slide-8 { background: var(--brand); }
+
+  #slide-8 .slide-eyebrow { color: rgba(0,0,0,0.5); }
+  #slide-8 .slide-title { color: var(--black); }
+
+  .cta-body {
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(0,0,0,0.65);
+    max-width: 600px;
+    line-height: 1.65;
+    margin-bottom: 48px;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    padding: 16px 36px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+  }
+
+  .cta-btn-primary {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .cta-btn-secondary {
+    background: transparent;
+    color: var(--black);
+    border: 2px solid rgba(0,0,0,0.3);
+  }
+
+  .pow-footer {
+    position: absolute;
+    bottom: 48px;
+    left: 80px;
+    right: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .pow-line {
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(0,0,0,0.4);
+    letter-spacing: 0.05em;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--gray);
+    padding: 24px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--gray2);
+  }
+
+  footer p {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .slide { padding: 100px 24px 60px; }
+    .slide-number { right: 24px; top: 72px; }
+    .problem-grid, .two-col, .hacd-grid, .utility-row, .partner-pitch { grid-template-columns: 1fr; }
+    .hero-stats { flex-direction: column; gap: 24px; }
+    footer { flex-direction: column; gap: 8px; padding: 20px 24px; }
+    .pow-footer { left: 24px; right: 24px; flex-direction: column; gap: 8px; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <svg viewBox="0 0 428 326" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M130.167 325.376C77.1821 325.376 30.0559 300.302 0 261.374C10.6914 263.56 21.7611 264.708 33.0986 264.708C123.869 264.708 197.453 191.123 197.453 100.353C197.453 62.5675 184.701 27.7618 163.268 0.000976562C238.173 15.3177 294.522 81.5881 294.522 161.021C294.522 251.791 220.938 325.376 130.167 325.376Z" fill="url(#ng1)"/>
+      <path d="M297.824 0C350.809 4.76216e-05 397.935 25.0742 427.991 64.002C417.3 61.8159 406.23 60.668 394.893 60.668C304.122 60.6682 230.538 134.253 230.538 225.023C230.538 262.809 243.29 297.614 264.724 325.375C189.819 310.058 133.469 243.788 133.469 164.355C133.469 73.5845 207.053 0 297.824 0Z" fill="url(#ng2)"/>
+      <defs>
+        <linearGradient id="ng1" x1="0" y1="267" x2="294" y2="0" gradientUnits="userSpaceOnUse">
+          <stop stop-color="white"/><stop offset="1" stop-color="#F44D1A"/>
+        </linearGradient>
+        <linearGradient id="ng2" x1="428" y1="60" x2="133" y2="326" gradientUnits="userSpaceOnUse">
+          <stop stop-color="white"/><stop offset="1" stop-color="#F44D1A"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="nav-wordmark">KREX<span>ON</span></div>
+  </div>
+  <div class="nav-tag">Partner Brief — Confidential</div>
+</nav>
+
+<!-- SLIDE 1: HERO -->
+<section class="slide" id="slide-1">
+  <div class="slide-number">01 / 08</div>
+
+  <!-- Large BG logo -->
+  <svg class="hero-logo-bg" viewBox="0 0 428 326" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M130.167 325.376C77.1821 325.376 30.0559 300.302 0 261.374C10.6914 263.56 21.7611 264.708 33.0986 264.708C123.869 264.708 197.453 191.123 197.453 100.353C197.453 62.5675 184.701 27.7618 163.268 0.000976562C238.173 15.3177 294.522 81.5881 294.522 161.021C294.522 251.791 220.938 325.376 130.167 325.376Z" fill="white"/>
+    <path d="M297.824 0C350.809 4.76216e-05 397.935 25.0742 427.991 64.002C417.3 61.8159 406.23 60.668 394.893 60.668C304.122 60.6682 230.538 134.253 230.538 225.023C230.538 262.809 243.29 297.614 264.724 325.375C189.819 310.058 133.469 243.788 133.469 164.355C133.469 73.5845 207.053 0 297.824 0Z" fill="white"/>
+  </svg>
+
+  <div class="hero-eyebrow">HACD Labs Incubator — Cohort 2</div>
+  <h1 class="hero-headline">
+    The loyalty<br>economy,<br><span class="accent">formed.</span>
+  </h1>
+  <p class="hero-sub">
+    KREXON turns $700B in trapped loyalty points into a liquid, interoperable market — backed by PoW-native asset formation on HACD.
+  </p>
+  <div class="hero-stats">
+    <div class="stat-block">
+      <div class="stat-num">$700B+</div>
+      <div class="stat-label">Outstanding loyalty value</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">100M</div>
+      <div class="stat-label">KRX total supply</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num">1,000</div>
+      <div class="stat-label">HACD formation lots</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 2: PROBLEM -->
+<section class="slide" id="slide-2">
+  <div class="slide-number">02 / 08</div>
+  <div class="slide-eyebrow">The Problem</div>
+  <h2 class="slide-title">Loyalty points are<br>worth less every day.</h2>
+  <div class="problem-grid">
+    <div class="problem-cell">
+      <div class="problem-number">01</div>
+      <div class="problem-icon">⏳</div>
+      <div class="problem-title">Points Expire</div>
+      <div class="problem-body">Billions in earned value disappears annually through inactivity clauses and program shutdowns. The holder loses. The issuer benefits.</div>
+    </div>
+    <div class="problem-cell">
+      <div class="problem-number">02</div>
+      <div class="problem-icon">🔒</div>
+      <div class="problem-title">No Interoperability</div>
+      <div class="problem-body">Hotel miles cannot become airline credits without navigating a portal at rates set by the issuer — not the market. There is no real exchange.</div>
+    </div>
+    <div class="problem-cell">
+      <div class="problem-number">03</div>
+      <div class="problem-icon">📉</div>
+      <div class="problem-title">No Exit</div>
+      <div class="problem-body">If a program changes its rules, devalues its currency, or shuts down, the holder has no recourse. There is no secondary market to exit into.</div>
+    </div>
+    <div class="problem-cell">
+      <div class="problem-number">04</div>
+      <div class="problem-icon">🚫</div>
+      <div class="problem-title">No Credible Token</div>
+      <div class="problem-body">Previous blockchain attempts replaced one centralized issuer with another. A deployed token without provable scarcity or formation history is not a solution.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 3: SOLUTION -->
+<section class="slide" id="slide-3">
+  <div class="slide-number">03 / 08</div>
+  <div class="slide-eyebrow">The Solution</div>
+  <h2 class="slide-title">Two layers.<br>One answer.</h2>
+  <div class="two-col">
+    <div>
+      <p class="solution-body">
+        KREXON is a two-layer loyalty exchange. <strong>HACD Stack</strong> provides PoW-backed token formation — credible, auditable, and permanent. <strong>Solana</strong> provides the execution infrastructure — sub-second swaps, near-zero fees, mobile-ready UX.
+      </p>
+      <p class="solution-body">
+        Neither layer is redundant. HACD does what Solana cannot: prove the token was <em>formed</em>, not just deployed.
+      </p>
+      <div class="brand-statement">
+        <p>Bitcoin proved PoW for money.</p>
+        <p>HACD brings PoW to assets.</p>
+        <p>KREXON brings PoW-backed assets to the loyalty economy.</p>
+      </div>
+    </div>
+    <div class="arch-box">
+      <div class="arch-layer">
+        <div class="arch-tag">Trust Layer</div>
+        <div class="arch-name">HACD Stack (Hacash)</div>
+        <div class="arch-role">PoW-backed issuance · Permanent formation history · Provable scarcity · 1,000 lots · 100 HAC/lot</div>
+      </div>
+      <div class="arch-connector">↓ Bridge / Wrap ↓</div>
+      <div class="arch-layer">
+        <div class="arch-tag">Execution Layer</div>
+        <div class="arch-name">Solana AMM</div>
+        <div class="arch-role">Sub-second finality · Near-zero fees · Custom AMM with loyalty-specific pricing · Mobile UX</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 4: WHY HACD -->
+<section class="slide" id="slide-4">
+  <div class="slide-number">04 / 08</div>
+  <div class="slide-eyebrow">Why HACD</div>
+  <h2 class="slide-title">The question your<br>partners will ask.</h2>
+  <div style="margin-bottom: 40px; font-size:17px; font-weight:600; color: rgba(255,255,255,0.55); max-width: 640px; line-height:1.65;">
+    Any team can deploy a token. Partners will ask: <em style="color:var(--white); font-style:normal;">"Can you prove it was formed with real cost, real scarcity, and real on-chain history?"</em> HACD is the only layer that answers yes.
+  </div>
+  <div class="hacd-grid">
+    <div class="hacd-card">
+      <div class="hacd-card-number">01</div>
+      <div class="hacd-card-title">Provable Scarcity</div>
+      <div class="hacd-card-body">Supply is enforced at the HACD issuance layer — not in a redeployable contract. 1,000 lots. No more. No silent inflation.</div>
+    </div>
+    <div class="hacd-card">
+      <div class="hacd-card-number">02</div>
+      <div class="hacd-card-title">Formation History</div>
+      <div class="hacd-card-body">Every KRX unit traces to a specific HACD lot with a permanent, on-chain formation record. Auditable by any partner, regulator, or compliance team.</div>
+    </div>
+    <div class="hacd-card">
+      <div class="hacd-card-number">03</div>
+      <div class="hacd-card-title">Visible Cost</div>
+      <div class="hacd-card-body">Each lot required 1 HACD + 100 HAC in real economic input. That cost is public, permanent, and cannot be revised or erased.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 5: SUPPLY STRUCTURE -->
+<section class="slide" id="slide-5">
+  <div class="slide-number">05 / 08</div>
+  <div class="slide-eyebrow">Formation Structure</div>
+  <h2 class="slide-title">Built by formula.<br>Verified on-chain.</h2>
+  <div class="two-col">
+    <div>
+      <table class="supply-table">
+        <thead>
+          <tr><th>Parameter</th><th>Value</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Token name</td><td>KREXON (KRX)</td></tr>
+          <tr><td>Total supply</td><td>100,000,000 KRX</td></tr>
+          <tr><td>HACD lots</td><td>1,000</td></tr>
+          <tr><td>KRX per lot</td><td>100,000 KRX</td></tr>
+          <tr><td>Stack cost / HACD</td><td>100 HAC</td></tr>
+          <tr><td>Total formation cost</td><td>100,000 HAC</td></tr>
+          <tr><td>All lots equal?</td><td>Yes</td></tr>
+          <tr class="highlight"><td>Supply formula verified</td><td>✓ 1,000 × 100,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div class="formula-box">
+        <div>total_supply =</div>
+        <div>&nbsp;&nbsp;<span class="f-brand">1,000</span> lots × <span class="f-brand">100,000</span> KRX</div>
+        <div>&nbsp;&nbsp;= <span class="f-brand">100,000,000</span> KRX ✓</div>
+        <br>
+        <div>formation_cost =</div>
+        <div>&nbsp;&nbsp;<span class="f-brand">1,000</span> lots × <span class="f-brand">100</span> HAC</div>
+        <div>&nbsp;&nbsp;= <span class="f-brand">100,000</span> HAC ✓</div>
+        <br>
+        <div style="color: rgba(255,255,255,0.35); font-size:12px;">
+          * Formation cost = on-chain input reference only.<br>
+          &nbsp;&nbsp;Not a guaranteed redemption value.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 6: UTILITY -->
+<section class="slide" id="slide-6">
+  <div class="slide-number">06 / 08</div>
+  <div class="slide-eyebrow">Token Utility</div>
+  <h2 class="slide-title">KRX powers<br>the exchange.</h2>
+  <div class="utility-row">
+    <div class="utility-card">
+      <div class="utility-icon">🗳️</div>
+      <div class="utility-title">Governance</div>
+      <div class="utility-body">KRX holders vote on platform parameters, partner integrations, fee structures, and protocol upgrades.</div>
+    </div>
+    <div class="utility-card">
+      <div class="utility-icon">💧</div>
+      <div class="utility-title">Liquidity</div>
+      <div class="utility-body">Provide liquidity to KREXON AMM pools and earn KRX rewards. Pools pair KRX with tokenized loyalty assets.</div>
+    </div>
+    <div class="utility-card">
+      <div class="utility-icon">💰</div>
+      <div class="utility-title">Fee Capture</div>
+      <div class="utility-body">A portion of DEX swap fees flows to KRX holders through the protocol fee mechanism.</div>
+    </div>
+    <div class="utility-card">
+      <div class="utility-icon">🤝</div>
+      <div class="utility-title">Partner Access</div>
+      <div class="utility-body">Loyalty programs integrating with KREXON may use KRX as a gateway token for platform access and settlement.</div>
+    </div>
+  </div>
+  <div style="font-size:12px; color:var(--muted); font-weight:500; letter-spacing:0.05em;">
+    KRX is a utility and governance token. No profit or return is guaranteed. Not financial advice.
+  </div>
+</section>
+
+<!-- SLIDE 7: PARTNER PITCH -->
+<section class="slide" id="slide-7">
+  <div class="slide-number">07 / 08</div>
+  <div class="slide-eyebrow">For Loyalty Partners</div>
+  <h2 class="slide-title">What KREXON<br>means for you.</h2>
+  <div class="partner-pitch">
+    <ul class="pitch-list">
+      <li>
+        <div class="pitch-bullet"></div>
+        <div class="pitch-text">
+          <strong>Your points get a real market</strong>
+          <span>KREXON's AMM gives your loyalty currency genuine price discovery — not a portal rate set by your program team.</span>
+        </div>
+      </li>
+      <li>
+        <div class="pitch-bullet"></div>
+        <div class="pitch-text">
+          <strong>Credible token, not a database entry</strong>
+          <span>Every KRX unit traces to a HACD formation record. Your compliance team has an auditable origin for every token in your ecosystem.</span>
+        </div>
+      </li>
+      <li>
+        <div class="pitch-bullet"></div>
+        <div class="pitch-text">
+          <strong>Interoperability without loss of brand</strong>
+          <span>Your loyalty currency can trade in KREXON pools without handing over your customer data or your program identity.</span>
+        </div>
+      </li>
+      <li>
+        <div class="pitch-bullet"></div>
+        <div class="pitch-text">
+          <strong>Reduce your liability balance</strong>
+          <span>Outstanding points are a liability on your balance sheet. A liquid secondary market gives holders an exit — and reduces your redemption obligation.</span>
+        </div>
+      </li>
+    </ul>
+    <div class="trust-block">
+      <div class="trust-q">
+        "Can you prove this token was formed with <em>real cost</em>, <em>real scarcity</em>, and <em>real history</em>?"
+      </div>
+      <div class="trust-answer">
+        That is the question your legal and compliance team will ask. The answer from a standard deployed token is no.<br><br>
+        The answer from a <strong>HACD Stack Asset</strong> is yes — with a permanent, on-chain formation record to back it up.
+      </div>
+      <div style="font-size:12px; color:var(--muted); line-height:1.6;">
+        KREXON uses HACD Stack issuance precisely because loyalty program partners require this level of accountability. The trust architecture is built into the formation layer — not promised in marketing copy.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 8: CTA -->
+<section class="slide" id="slide-8">
+  <div class="slide-number" style="color: rgba(0,0,0,0.3);">08 / 08</div>
+  <div class="slide-eyebrow">Next Steps</div>
+  <h2 class="slide-title">Ready to form<br>the future of loyalty.</h2>
+  <p class="cta-body">
+    KREXON is seeking early loyalty program partners to co-design the first PoW-backed loyalty exchange. Formation begins through HACD Labs Incubator Cohort 2.
+  </p>
+  <div class="cta-row">
+    <button class="cta-btn cta-btn-primary">Request Partner Brief</button>
+    <button class="cta-btn cta-btn-secondary">Learn About HACD Stack</button>
+  </div>
+  <div class="pow-footer">
+    <span class="pow-line">Bitcoin proved PoW for money.</span>
+    <span class="pow-line">HACD brings PoW to assets.</span>
+    <span class="pow-line">KREXON brings PoW-backed assets to the loyalty economy.</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>KREXON — HACD Stack Asset — Draft Issuance Package for Review</p>
+  <p>Final parameters must be confirmed by the issuer and HACD Labs before Launchpad publication. Not financial advice.</p>
+</footer>
+
+</body>
+</html>

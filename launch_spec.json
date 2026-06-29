@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0",
+  "generated_by": "HACD Incubator AI Issuance Assistant",
+  "status": "DRAFT — requires issuer confirmation and HACD Labs review",
+
+  "project": {
+    "name": "KREXON",
+    "ticker": "KRX",
+    "category": "utility_rwa",
+    "description": "A two-layer loyalty exchange — HACD Stack for credible token formation, Solana for real-time AMM swaps — turning trapped loyalty points into a liquid, interoperable economy.",
+    "target_users": ["hotel loyalty programs", "airline frequent flyer programs", "retail reward programs", "loyalty points holders", "crypto liquidity providers"],
+    "official_links": {
+      "website": "NEEDS_CONFIRMATION",
+      "twitter": "NEEDS_CONFIRMATION",
+      "launchpad": "NEEDS_CONFIRMATION"
+    },
+    "team_status": "NEEDS_CONFIRMATION",
+    "legal_review_status": "REQUIRED — loyalty point tokenization has regulatory implications"
+  },
+
+  "asset": {
+    "type": "FT",
+    "name": "KREXON",
+    "ticker": "KRX",
+    "decimals": "NEEDS_CONFIRMATION",
+    "total_supply": 100000000,
+    "total_supply_note": "ASSUMPTION — needs issuer confirmation",
+    "supply_formula": "total_supply = total_hacd_lots × units_per_hacd_lot"
+  },
+
+  "stack_structure": {
+    "total_hacd_lots": 1000,
+    "total_hacd_lots_note": "ASSUMPTION — needs issuer confirmation",
+    "units_per_hacd_lot": 100000,
+    "all_lots_equal": true,
+    "tiered_lots": false,
+    "tiered_lots_note": "Partner tier structure possible — needs issuer confirmation",
+    "minimum_hacd_per_participant": 1,
+    "designated_address_required": "NEEDS_CONFIRMATION"
+  },
+
+  "stack_cost": {
+    "cost_per_hacd_hac": 100,
+    "cost_per_hacd_hac_note": "ASSUMPTION — needs issuer confirmation",
+    "estimated_total_formation_cost_hac": 100000,
+    "network_fee": "variable — check live at explorer.hacash.org",
+    "formation_cost_formula": "formation_cost_hac = total_hacd_lots × stack_cost_per_hacd"
+  },
+
+  "formation_rules": {
+    "hacd_per_lot": 1,
+    "hac_per_lot": 100,
+    "krx_formed_per_lot": 100000,
+    "formation_history": "permanent on-chain",
+    "removal_behavior": "NEEDS_CONFIRMATION",
+    "removal_behavior_default": "unstacking returns HACD to stacker; KRX in circulation unaffected; formation record immutable"
+  },
+
+  "architecture": {
+    "issuance_layer": "Hacash (HACD Stack)",
+    "execution_layer": "Solana",
+    "bridge_mechanism": "NEEDS_CONFIRMATION — critical path item",
+    "solana_token_standard": "SPL",
+    "amm_type": "Custom AMM with loyalty-specific features"
+  },
+
+  "token_utility": {
+    "governance": true,
+    "liquidity_incentive": true,
+    "fee_capture": true,
+    "partner_access_tiers": "NEEDS_CONFIRMATION",
+    "utility_at_launch": "NEEDS_CONFIRMATION",
+    "roadmap_dependencies": "NEEDS_CONFIRMATION"
+  },
+
+  "launch": {
+    "intended_launchpad_date": "NEEDS_CONFIRMATION",
+    "launch_phases": "NEEDS_CONFIRMATION",
+    "claim_method": "Stack via KREXON Launchpad → bridge to Solana",
+    "public_communication_angle": "PoW-backed loyalty asset formation — HACD as trust layer for the loyalty economy"
+  },
+
+  "risk_disclosures": {
+    "not_financial_advice": true,
+    "no_profit_guarantee": true,
+    "no_price_floor_claim": true,
+    "formation_cost_is_reference_only": true,
+    "bridge_risk": "cross-chain bridge introduces technical risk — mechanism TBC",
+    "regulatory_risk": "loyalty point tokenization may be regulated in some jurisdictions — legal review required",
+    "utility_dependency": "DEX utility depends on AMM build completion — check roadmap",
+    "partner_dependency": "value proposition depends on loyalty program partner adoption"
+  },
+
+  "supply_math_check": {
+    "total_supply_formula": "100,000,000 = 1,000 × 100,000",
+    "supply_formula_valid": true,
+    "formation_cost_formula": "100,000 HAC = 1,000 × 100 HAC",
+    "formation_cost_valid": true
+  },
+
+  "review_status": {
+    "issuer_confirmed": false,
+    "hacd_labs_reviewed": false,
+    "legal_reviewed": false,
+    "launchpad_approved": false,
+    "package_generated": "2024-01",
+    "assumptions_flagged": true
+  }
+}
