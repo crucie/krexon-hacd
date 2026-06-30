@@ -198,8 +198,24 @@
   .problem-cell:hover { background: var(--gray2); }
 
   .problem-icon {
-    font-size: 28px;
     margin-bottom: 16px;
+  }
+
+  .problem-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .problem-icon svg path,
+  .problem-icon svg circle,
+  .problem-icon svg line,
+  .problem-icon svg polyline,
+  .problem-icon svg rect {
+    stroke: var(--brand);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
   .problem-title {
@@ -429,8 +445,25 @@
   }
 
   .utility-icon {
-    font-size: 32px;
     margin-bottom: 16px;
+  }
+
+  .utility-icon svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .utility-icon svg path,
+  .utility-icon svg circle,
+  .utility-icon svg line,
+  .utility-icon svg polyline,
+  .utility-icon svg rect,
+  .utility-icon svg ellipse {
+    stroke: var(--brand);
+    fill: none;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
   .utility-title {
@@ -674,25 +707,25 @@
   <div class="problem-grid">
     <div class="problem-cell">
       <div class="problem-number">01</div>
-      <div class="problem-icon">⏳</div>
+      <div class="problem-icon"><svg viewBox="0 0 32 32"><path d="M8 4h16M8 28h16M9 4c0 7 7 10.5 7 12s-7 5-7 12M23 4c0 7-7 10.5-7 12s7 5 7 12"/></svg></div>
       <div class="problem-title">Points Expire</div>
       <div class="problem-body">Billions in earned value disappears annually through inactivity clauses and program shutdowns. The holder loses. The issuer benefits.</div>
     </div>
     <div class="problem-cell">
       <div class="problem-number">02</div>
-      <div class="problem-icon">🔒</div>
+      <div class="problem-icon"><svg viewBox="0 0 32 32"><rect x="6" y="15" width="20" height="13" rx="2"/><path d="M10.5 15v-4a5.5 5.5 0 0 1 11 0v4"/><circle cx="16" cy="21" r="1.8"/></svg></div>
       <div class="problem-title">No Interoperability</div>
       <div class="problem-body">Hotel miles cannot become airline credits without navigating a portal at rates set by the issuer — not the market. There is no real exchange.</div>
     </div>
     <div class="problem-cell">
       <div class="problem-number">03</div>
-      <div class="problem-icon">📉</div>
+      <div class="problem-icon"><svg viewBox="0 0 32 32"><polyline points="4,9 11,18 18,12 28,24"/><polyline points="21,24 28,24 28,17"/></svg></div>
       <div class="problem-title">No Exit</div>
       <div class="problem-body">If a program changes its rules, devalues its currency, or shuts down, the holder has no recourse. There is no secondary market to exit into.</div>
     </div>
     <div class="problem-cell">
       <div class="problem-number">04</div>
-      <div class="problem-icon">🚫</div>
+      <div class="problem-icon"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><line x1="7.5" y1="7.5" x2="24.5" y2="24.5"/></svg></div>
       <div class="problem-title">No Credible Token</div>
       <div class="problem-body">Previous blockchain attempts replaced one centralized issuer with another. A deployed token without provable scarcity or formation history is not a solution.</div>
     </div>
@@ -810,22 +843,22 @@
   <h2 class="slide-title">KRX powers<br>the exchange.</h2>
   <div class="utility-row">
     <div class="utility-card">
-      <div class="utility-icon">🗳️</div>
+      <div class="utility-icon"><svg viewBox="0 0 32 32"><rect x="4" y="4" width="24" height="24" rx="2"/><polyline points="10,16 14,20 22,12"/></svg></div>
       <div class="utility-title">Governance</div>
       <div class="utility-body">KRX holders vote on platform parameters, partner integrations, fee structures, and protocol upgrades.</div>
     </div>
     <div class="utility-card">
-      <div class="utility-icon">💧</div>
+      <div class="utility-icon"><svg viewBox="0 0 32 32"><path d="M16 4s-8 9-8 15a8 8 0 0 0 16 0c0-6-8-15-8-15Z"/></svg></div>
       <div class="utility-title">Liquidity</div>
       <div class="utility-body">Provide liquidity to KREXON AMM pools and earn KRX rewards. Pools pair KRX with tokenized loyalty assets.</div>
     </div>
     <div class="utility-card">
-      <div class="utility-icon">💰</div>
+      <div class="utility-icon"><svg viewBox="0 0 32 32"><ellipse cx="16" cy="9" rx="10" ry="4"/><path d="M6 9v7c0 2.2 4.5 4 10 4s10-1.8 10-4V9"/><path d="M6 16v7c0 2.2 4.5 4 10 4s10-1.8 10-4v-7"/></svg></div>
       <div class="utility-title">Fee Capture</div>
       <div class="utility-body">A portion of DEX swap fees flows to KRX holders through the protocol fee mechanism.</div>
     </div>
     <div class="utility-card">
-      <div class="utility-icon">🤝</div>
+      <div class="utility-icon"><svg viewBox="0 0 32 32"><path d="M4 20l6-6 4 4 6-6 8 8"/><circle cx="10" cy="14" r="1.8"/><circle cx="20" cy="12" r="1.8"/><line x1="4" y1="24" x2="28" y2="24"/></svg></div>
       <div class="utility-title">Partner Access</div>
       <div class="utility-body">Loyalty programs integrating with KREXON may use KRX as a gateway token for platform access and settlement.</div>
     </div>
